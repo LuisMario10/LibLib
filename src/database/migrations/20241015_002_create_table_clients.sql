@@ -1,0 +1,11 @@
+CREATE TABLE Client(
+	id TEXT PRIMARY KEY,
+	name TEXT NOT NULL,
+	email TEXT UNIQUE,
+	phone_number INTEGER NOT NULL,
+	loan_book TEXT,
+	created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+	updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+	
+	FOREIGN KEY(loan_book) REFERENCES Book(id)
+)
