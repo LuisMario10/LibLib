@@ -22,7 +22,6 @@ class AuthService:
         return False
 
 
-
     def sign_in(self, username, password):
         query = "INSERT INTO Authentication(username, password) VALUES (?, ?)"
         data = [username, password]

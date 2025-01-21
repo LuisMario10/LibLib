@@ -36,65 +36,65 @@ class BookView:
         
         self.window.config(menu=self.file_menu)
 
-        self.frame_up = self.frame_model(width_=310, height_=50, bg_color=self.color_3, row_=0, column_=0)
+        self.frame_up = self.frame_model(self.window, width_=310, height_=50, bg_color=self.color_3, row_=0, column_=0)
 
-        self.frame_mid = self.frame_model(width_=310, height_=400, bg_color=self.darkgreen, row_=1, column_=0)
+        self.frame_mid = self.frame_model(self.window, width_=310, height_=400, bg_color=self.darkgreen, row_=1, column_=0)
 
-        self.frame_right = self.frame_model(width_=640, height_=403, bg_color=self.color_5, row_=0, column_=1)
+        self.frame_right = self.frame_model(self.window, width_=640, height_=403, bg_color=self.color_5, row_=0, column_=1)
         self.frame_right.grid(row=0, column=1, rowspan=2, padx=1, sticky=NSEW)
 
 
         self.app_name = Label(self.frame_up, text='Gerenciar Livros', anchor=NW, font=('arial 15 bold'), bg=self.color_3, fg=self.darkgreen, relief='flat')
         self.app_name.place(x=10, y=20)
 
-        self.label_model("Titulo: ", 10, 10)
-        self.entry_title = self.entry_model(45, 10, 40)
+        self.label_model(self.frame_mid, "Titulo: ", 10, 10)
+        self.entry_title = self.entry_model(self.frame_mid, 45, 10, 40)
 
-        self.label_model("Autor: ", 10, 80)
-        self.entry_author = self.entry_model(45, 10, 110)
+        self.label_model(self.frame_mid, "Autor: ", 10, 80)
+        self.entry_author = self.entry_model(self.frame_mid, 45, 10, 110)
 
-        self.label_model("Gênero: ", 10, 150)
+        self.label_model(self.frame_mid, "Gênero: ", 10, 150)
         self.combobox_list = ["Aventura", "Ação", "Drama", "Romance", "Comedia Romantica", "Adulto", "Tecnico", "Ficção Científica", "Religioso", "Receitas", "Folclore Brasileiro"]
         self.entry_gender = ttk.Combobox(self.frame_mid, values=self.combobox_list, width=20)
         self.entry_gender.place(x=10, y=180)
 
-        self.label_model("Classificação Indicativa: ", x_place=10, y_place=220)
-        self.entry_indicate_rating= self.entry_model(width_=45, x_place=10, y_place=250)
+        self.label_model(self.frame_mid, "Classificação Indicativa: ", x_place=10, y_place=220)
+        self.entry_indicate_rating= self.entry_model(widget=self.frame_mid, width_=45, x_place=10, y_place=250)
 
-        self.label_model("Numero de Paginas: ", x_place=10, y_place=290)
-        self.entry_number_of_pages = self.entry_model(width_=45, x_place=10, y_place=320)
+        self.label_model(self.frame_mid, "Numero de Paginas: ", x_place=10, y_place=290)
+        self.entry_number_of_pages = self.entry_model(widget=self.frame_mid, width_=45, x_place=10, y_place=320)
 
 
-        self.button_model(text_="Cadastrar", bg_color=self.color_3, fg_color=self.darkgreen, function=self.post, x_place=215, y_place=370)
+        self.button_model(widget=self.frame_mid,text_="Cadastrar", bg_color=self.color_3, fg_color=self.darkgreen, function=self.post, x_place=215, y_place=370)
 
-        self.button_model(text_="Atualizar", bg_color='blue', fg_color='lightblue', function=self.update, x_place=115, y_place=370)
+        self.button_model(widget=self.frame_mid, text_="Atualizar", bg_color='blue', fg_color='lightblue', function=self.update, x_place=115, y_place=370)
 
-        self.button_model(text_="Deletar", bg_color='darkred', fg_color="#ff6961", function=None, x_place=15, y_place=370)
+        self.button_model(widget=self.frame_mid ,text_="Deletar", bg_color='darkred', fg_color="#ff6961", function=self.delete, x_place=15, y_place=370)
         
         self.get_all(self.frame_right)
 
         self.window.mainloop()
 
-    def frame_model(self, width_, height_, bg_color, row_, column_):
-        frame = Frame(self.window, width=width_, height=height_, bg=bg_color, relief='flat')
+    def frame_model(self, window, width_, height_, bg_color, row_, column_):
+        frame = Frame(window, width=width_, height=height_, bg=bg_color, relief='flat')
         frame.grid(row=row_, column=column_)
         return frame
 
 
-    def label_model(self, text_, x_place, y_place):
-        label = Label(self.frame_mid, text=text_, anchor=NW, font=('arial 12 bold'), bg=self.darkgreen, fg=self.white, relief='flat')
+    def label_model(self, widget ,text_, x_place, y_place):
+        label = Label(widget, text=text_, anchor=NW, font=('arial 12 bold'), bg=self.darkgreen, fg=self.white, relief='flat')
         label.place(x=x_place, y=y_place)
         return label
 
 
-    def entry_model(self, width_, x_place, y_place):
-        entry = Entry(self.frame_mid, width=width_, justify='left', relief='solid')
+    def entry_model(self, widget, width_, x_place, y_place):
+        entry = Entry(widget, width=width_, justify='left', relief='solid')
         entry.place(x=x_place, y=y_place)
         return entry
 
 
-    def button_model(self, text_, bg_color, fg_color, function, x_place, y_place):
-        button = Button(self.frame_mid, text=text_, width=8, anchor=NW, font=('arial 10 bold'), bg=bg_color, fg=fg_color, relief='raised', overrelief='ridge', command=function)
+    def button_model(self, widget, text_, bg_color, fg_color, function, x_place, y_place):
+        button = Button(widget, text=text_, width=8, anchor=NW, font=('arial 10 bold'), bg=bg_color, fg=fg_color, relief='raised', overrelief='ridge', command=function)
         button.place(x=x_place, y=y_place)
         return button
 
@@ -177,71 +177,87 @@ class BookView:
         self.get_all(self.frame_right)
 
     def update(self):
-        window_update = Toplevel()
-        window_update.geometry("800x600")
-        window_update.configure(background=self.color_2)
+        window_update = Tk()
+        window_update.title("LibLib - Gerenciador de Bibliotecas")
         window_update.resizable(width=FALSE, height=FALSE)
+        window_update.geometry("800x500")
+        window_update.configure(background=self.darkgreen)
 
-        frame_ =  Frame(window_update, width=800, height=75, bg=self.darkgreen, relief='flat')
-        frame_.grid(row=0, column=0)
+        self.label_model(window_update, "Titulo Atual: ", 10, 10)
+        self.entry_before_title = self.entry_model(window_update, 45, 10, 40)
 
-        name_top  = Label(self.frame_, text='Atualizar Livros', anchor=NW, font=('arial 15 bold'), bg=self.color_3, fg=self.darkgreen, relief='flat')
-        self.app_name.place(x=10, y=20)
+        self.label_model(window_update, "Titulo Novo:", 10, 80)
+        self.entry_new_title = self.entry_model(window_update, 45, 10, 110)
 
-        label_title = Label(window_update, text="Titulo Atual", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_title.place(x=40, y=100)
+        self.label_model(window_update, "Autor: ", 10, 150)
+        self.entry_new_author = self.entry_model(window_update, 45, 10, 180)
 
-        entry_before_title = Entry(window_update, width=45, justify='left', relief='solid')
-        entry_before_title.place(x=40, y=130)
+        self.label_model(window_update, "Gênero: ", 10, 220)
+        self.entry_new_gender = ttk.Combobox(window_update, values=self.combobox_list, width=20)
+        self.entry_new_gender.place(x=10, y=250)
 
-        label_update_title = Label(window_update, text="Titulo Novo", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_update_title.place(x=40, y=170)
 
-        entry_update_title = Entry(window_update, width=45, justify='left', relief='solid')
-        entry_update_title.place(x=40, y=200)
+        self.label_model(window_update,"Classificação Indicativa: ", x_place=10, y_place=290)
+        self.entry_new_indicate_rating= self.entry_model(widget=window_update ,width_=45, x_place=10, y_place=320)
 
-        label_update_author = Label(window_update, text="Novo Autor", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_update_author.place(x=40, y=240)
+        self.label_model(window_update, "Numero de Paginas: ", x_place=10, y_place=360)
+        self.entry_new_number_of_pages = self.entry_model(widget=window_update, width_=45, x_place=10, y_place=390)
 
-        entry_update_author = Entry(window_update, width=45, justify='left', relief='solid')
-        entry_update_author.place(x=40, y=270)
+        self.button_model(widget=window_update, text_="Confirmar", bg_color=self.color_3, fg_color=self.darkgreen, function=self.request_update, x_place=10, y_place=460)
 
-        label_update_gender = Label(window_update, text="Novo Genero", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_update_gender.place(x=40, y=310)
-        entry_update_gender = ttk.Combobox(window_update, values=self.combobox_list, width=20)
-        entry_update_gender.place(x=40, y=340)
+        self.button_model(widget=window_update, text_="Sair", bg_color='red', fg_color='white', function=quit, x_place=100, y_place=460)
+    
+    def request_update(self):        
+        list_update = [self.entry_new_title.get(), self.entry_new_author.get(), self.entry_new_gender.get(), self.entry_new_indicate_rating.get(), self.entry_new_number_of_pages.get(), self.entry_before_title.get()]
 
-        label_update_indicate_rating = Label(window_update, text="Classificação Indicativa:", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_update_indicate_rating.place(x=40, y=410)
+        BookRepository().update(list_update)
+        messagebox.showinfo("rodou")
+        datas = BookRepository().findAll()
 
-        entry_update_indicate_rating = Entry(window_update, width=45, justify='left', relief='solid')
-        entry_update_indicate_rating.place(x=40, y=440)
+        for item in datas:
+            print(f"{item}")
+        
+        for widget in self.frame_right.winfo_children():
+            widget.destroy()
+        
+        self.get_all(self.frame_right)
+    
+    def delete(self):
+        treev_data = tree.focus()
+        treev_converter = tree.item(treev_data)
+        tree_list = treev_converter['values']
 
-        label_update_number_of_pages = Label(window_update, text="Numero de Paginas:", anchor=NW, font=('arial 12 bold'), bg=self.color_2, fg=self.darkgreen, relief='flat')
-        label_update_number_of_pages.place(x=40, y=480)
+        value = tree_list[0]
 
-        entry_update_number_of_pages = Entry(window_update, width=45, justify='left', relief='solid')
-        entry_update_number_of_pages.place(x=40, y=510)
+        self.entry_title.delete(0, 'end')
+        self.entry_author.delete(0, 'end')
+        self.entry_gender.delete(0, 'end')
+        self.entry_indicate_rating.delete(0, 'end')
+        self.entry_number_of_pages.delete(0, 'end')
 
-        title_now = entry_before_title.get()
+        self.entry_title.insert(0, tree_list[0])
+        self.entry_author.insert(0, tree_list[1])
+        self.entry_gender.insert(0, tree_list[2])
+        self.entry_indicate_rating.insert(0, tree_list[3])
+        self.entry_number_of_pages.insert(0, tree_list[4])
 
-        new_title = entry_update_title.get()
-        new_author = entry_update_author.get()
-        new_gender = entry_update_gender.get()
-        new_indicate_rating = entry_update_indicate_rating.get()
-        new_number_of_pages = entry_update_number_of_pages.get()
+        window_delete = Tk()
+        window_delete.title("LibLib - Gerenciador de Bibliotecas")
+        window_delete.resizable(width=FALSE, height=FALSE)
+        window_delete.geometry("364x200")
+        window_delete.configure(background=self.darkgreen)
 
-        list_data_update = [new_title, new_author, new_gender, new_indicate_rating, new_number_of_pages, new_title]
+        self.label_model(window_delete, "Deseja deletar esses livro?", 90, 60)
+        self.button_model(window_delete, "Confirmar", "darkred", "white", self.delete_data, 90, 115)
 
-        def request():
-            BookRepository().update(list_data_update)
+    
+    def delete_data(self):
+        title_to_delete = self.entry_title.get()
+        print(f"{title_to_delete}")
+        BookRepository().delete([title_to_delete])
 
-            for widget in self.frame_right.winfo_children():
-                widget.destroy()
+        for widget in self.frame_right.winfo_children():
+            widget.destroy()
+        
+        self.get_all(self.frame_right)
 
-            self.get_all(self.frame_right)
-
-            messagebox.showinfo("Sucesso!", "Livro atualizado com sucesso!")
-
-        button_confirm_update = Button(window_update, text="Confirmar", width=8, anchor=NW, font=('arial 10 bold'), bg=self.darkgreen, fg=self.color_4, relief='raised', overrelief='ridge', command=request)
-        button_confirm_update.place(x=215, y=520)

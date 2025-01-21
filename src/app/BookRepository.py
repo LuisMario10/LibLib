@@ -26,7 +26,7 @@ class BookRepository:
         with self.database:
             self.cursor.execute(query, id)
             return self.cursor.fetchall()
-    
+                                                                                                                                                                                                                                                                                                                    
     def findByTitle(self, title):
         query = "SELECT * FROM Book WHERE title = ?"
         with self.database:
@@ -39,14 +39,16 @@ class BookRepository:
             query = "UPDATE Book SET title=?, author=?, gender=?, indicate_rating=?, number_of_pages=? WHERE title = ?"
             with self.database:
                 self.cursor.execute(query, new_datas)
-                result = self.cursor.fetchall()
-                print(f"Sucesso: {result[0]}")
-        except Exception:
-            print(f"Deu ruim: {Exception}")
+        except Exception as e:
+            print(f"Deu erro {e}")
 
-    def delete(self, id):
-        query = "DELETE FROM Client WHERE title = ?"
-        with self.database:
-            self.cursor.execute(query, id)
+
+    def delete(self, title):
+        try:
+            query = "DELETE FROM Client WHERE title = ?"
+            with self.database:
+                self.cursor.execute(query, title)
+        except Exception as e:
+            print(f"Deu erro: {e}")
 
 

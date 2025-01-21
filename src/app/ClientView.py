@@ -41,11 +41,11 @@ class ClientView:
 
         self.frame_up = self.frame_model(width_=310, height_=50, bg_color=self.color_3, row_=0, column_=0)
 
+
         self.frame_mid = self.frame_model(310, 400, self.color_1, 1, 0)
 
         self.frame_right = self.frame_model(640, 403, self.color_5, 0, 1)
         self.frame_right.grid(row=0, column=1, rowspan=2, padx=1, sticky=NSEW)
-
 
         self.app_name = Label(self.frame_up, text='Gerenciar Clientes', anchor=NW, font=('arial 15 bold'),bg=self.color_3, fg='darkgreen', relief='flat')
         self.app_name.place(x=10, y=20)

@@ -3,7 +3,7 @@ from tkinter import messagebox
 from AuthService import AuthService
 from __init__ import *
 
-class Login:
+class AuthView:
 
     def __init__(self):
 
@@ -74,7 +74,6 @@ class Login:
         username = self.entry_username.get()
         password = self.entry_password.get()
 
-        datas = [username, password]
 
         if len(username) == 0 or len(password) == 0:
             messagebox.showerror("Erro nos campos!", "Campo nome do usuario e o campo senha não podem estar vazios!")
@@ -100,5 +99,5 @@ class Login:
             self.entry_username.delete(0, 'end')
             self.entry_password.delete(0, 'end')
     
-_MAIN = Login()
+_MAIN = AuthView()
 _MAIN.window.mainloop()
