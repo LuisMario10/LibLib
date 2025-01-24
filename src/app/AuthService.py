@@ -10,21 +10,32 @@ class AuthService:
 
 
     def login(self, username, password):
-        query = "SELECT * FROM Admin"
-        with self.database:
-            self.cursor.execute(query)
+        try:
+            query = "SELECT * FROM Admin"
+            with self.database:
+                self.cursor.execute(query)
 
-        result = self.cursor.fetchall()
-
-        for data in result:
-            if data[0] == username and data[1] == password:
-                return True
-        return False
-
+            for data in self.cursor.fetchall():
+                if data[0] == username and data[1] == password:
+                    return True
+            return False
+        except Exception as e:
+            print(f"Error - See exception: {e}")
+            
 
     def sign_in(self, username, password):
-        query = "INSERT INTO Authentication(username, password) VALUES (?, ?)"
-        data = [username, password]
-        with self.database:
-            self.cursor.execute(query, data)
+        try:
+            query = "INSERT INTO Admin(username, password) VALUES (?, ?)"
 
+            if username is None :
+                return Exception
+            
+            if password is None:
+                return Exception
+            
+            data = [username, password]
+            with self.database:
+                self.cursor.execute(query, data)
+                
+        except Exception as e:
+            print(f"Error to signin - See exception: {e}")

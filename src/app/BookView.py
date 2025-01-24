@@ -29,7 +29,7 @@ class BookView:
         self.file_menu = Menu(self.main_menu, tearoff=0)
         self.file_menu.add_command(label="Area Emprestimos", command=self.goto_book_loan_area)
         self.file_menu.add_command(label="Area Cliente", command=self.goto_client_area)
-        self.file_menu.add_command(label="Relatório", command=self.goto_report)
+        self.file_menu.add_command(label="Relatório", command=__init__.Report().generate_report)
         self.file_menu.add_separator() 
         self.file_menu.add_command(label="Sair", command=self.window.quit)
         
@@ -99,14 +99,10 @@ class BookView:
         return button
 
     def goto_book_loan_area(self):
-        pass
+        __init__.BookLoanView()
 
     def goto_client_area(self):
         __init__.ClientView()
-
-
-    def goto_report(self):
-        pass
 
 
     def get_all(self, frame):
@@ -175,7 +171,7 @@ class BookView:
             widget.destroy()
         
         self.get_all(self.frame_right)
-
+ 
     def update(self):
         window_update = Tk()
         window_update.title("LibLib - Gerenciador de Bibliotecas")
@@ -211,7 +207,7 @@ class BookView:
         list_update = [self.entry_new_title.get(), self.entry_new_author.get(), self.entry_new_gender.get(), self.entry_new_indicate_rating.get(), self.entry_new_number_of_pages.get(), self.entry_before_title.get()]
 
         BookRepository().update(list_update)
-        messagebox.showinfo("rodou")
+        messagebox.showinfo("Sucesso!", "Dados atualizados com sucesso")
         datas = BookRepository().findAll()
 
         for item in datas:
@@ -227,8 +223,6 @@ class BookView:
         treev_converter = tree.item(treev_data)
         tree_list = treev_converter['values']
 
-        value = tree_list[0]
-
         self.entry_title.delete(0, 'end')
         self.entry_author.delete(0, 'end')
         self.entry_gender.delete(0, 'end')
@@ -241,14 +235,13 @@ class BookView:
         self.entry_indicate_rating.insert(0, tree_list[3])
         self.entry_number_of_pages.insert(0, tree_list[4])
 
-        window_delete = Tk()
-        window_delete.title("LibLib - Gerenciador de Bibliotecas")
-        window_delete.resizable(width=FALSE, height=FALSE)
-        window_delete.geometry("364x200")
-        window_delete.configure(background=self.darkgreen)
+        self.window_delete = Tk()
+        self.window_delete.resizable(width=FALSE, height=FALSE)
+        self.window_delete.geometry("364x200")
+        self.window_delete.configure(background=self.darkgreen)
 
-        self.label_model(window_delete, "Deseja deletar esses livro?", 90, 60)
-        self.button_model(window_delete, "Confirmar", "darkred", "white", self.delete_data, 90, 115)
+        self.label_model(self.window_delete, "Deseja deletar esses livro?", 90, 60)
+        self.button_model(self.window_delete, "Confirmar", "darkred", "white", self.delete_data, 180, 115)
 
     
     def delete_data(self):
@@ -260,4 +253,3 @@ class BookView:
             widget.destroy()
         
         self.get_all(self.frame_right)
-

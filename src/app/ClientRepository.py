@@ -22,10 +22,10 @@ class ClientRepository:
         return list_result
     
     def findById(self, id):
-        query = "SELECT * FROM Client WHERE id = ?"
-        with self.database:
-            self.cursor.execute(query, id)
-            return self.cursor.fetchall()
+        query = "SELECT name, email, phone_number, loan_book, date_of_birth FROM Client WHERE id = ?"
+        with self.database: 
+            self.cursor.execute(query, (id,))
+        return self.cursor.fetchall()
     
     def findByEmail(self, email):
         query = "SELECT * FROM Client WHERE email = ?"
@@ -34,14 +34,17 @@ class ClientRepository:
             return self.cursor.fetchall()
     
     def update(self, new_datas):
-        query = "UPDATE Client SET name=?, email=?, date_of_birth=?, phone_number=? WHERE id = ?"
-        with self.database:
-            self.cursor.execute(query, new_datas)
-            
-            print("Dados do cliente foram atualizados")
+        try:
+            query = "UPDATE Client SET name=?, email=?, date_of_birth=?, phone_number=? WHERE email = ?"
+            with self.database:
+                self.cursor.execute(query, new_datas)
+                print("Dados do cliente foram atualizados")
+                
+        except sqlite3.Error as e:
+            print(f"Erro to update client: {e}")
 
     def delete(self, id):
-        query = "DELETE FROM Client WHERE id = ?"
+        query = "DELETE FROM Client WHERE email = ?"
         with self.database:
             self.cursor.execute(query, id)
 

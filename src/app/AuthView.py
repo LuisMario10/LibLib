@@ -27,15 +27,16 @@ class AuthView:
 
         self.frame_down = self.frame_model(width_=800, height_=140, bg_color=self.darkgreen, row_=2, column_=0)
 
-
         self.app_name = Label(self.frame_top, text='Login - LibLib APP', anchor=NW, font=('arial 20 bold'), bg=self.color_3, fg='darkgreen', relief='flat')
         self.app_name.place(x=300, y=18)
 
         self.label_username = self.label_model(frame=self.frame_mid, text_="Nome do Usuario:", x_place=276, y_place=84)
-        self.entry_username = self.entry_model(52, 276, 116)
+        self.entry_username = self.entry_model(52, 276, 116)                                                                                                       
 
         self.label_password = self.label_model(frame=self.frame_mid, text_="Senha:", x_place=276, y_place=176)
-        self.entry_password = self.entry_model(52, 276, 206)
+        self.entry_password = Entry(self.frame_mid, width=52, justify='left', relief='solid', show="*")
+        self.entry_password.place(x=276, y=206)
+
 
         self.button_confirm = self.button_model(text_="Confirmar", bg_color=self.darkgreen, fg_color='lightgreen', function=self.try_login, x_place=504, y_place=256)
 
@@ -43,7 +44,7 @@ class AuthView:
 
         self.button_quit = self.button_model(text_="Sair", bg_color='darkred', fg_color='#ff6961', function=self.window.quit, x_place=276, y_place=256)
 
-        self.description_footer = Label(self.frame_down, text="Gerencie sua biblioteca com LibLib - Temos Funcionalidades que vão agilizar seu negócio!", anchor=CENTER, font=('arial 12 bold'), bg=self.darkgreen, fg=self.white, relief='flat')
+        self.description_footer = Label(self.frame_down, text="Gerencie sua biblioteca com LibLib\nTemos Funcionalidades que vão agilizar seu negócio!", anchor=CENTER, font=('arial 12 bold'), bg=self.darkgreen, fg=self.white, relief='flat')
         self.description_footer.pack()
         
     def frame_model(self, width_, height_, bg_color, row_, column_):
@@ -52,7 +53,7 @@ class AuthView:
         return frame
 
 
-    def label_model(self, frame,text_, x_place, y_place):
+    def label_model(self, frame, text_, x_place, y_place):
         label = Label(frame, text=text_, anchor=NW, font=('arial 16 bold'), bg=self.color_4, fg=self.darkgreen, relief='flat')
         label.place(x=x_place, y=y_place)
         return label
@@ -77,7 +78,6 @@ class AuthView:
 
         if len(username) == 0 or len(password) == 0:
             messagebox.showerror("Erro nos campos!", "Campo nome do usuario e o campo senha não podem estar vazios!")
-
             
         if not AuthService().login(username, password):
             messagebox.showinfo("Acesso negado!", "Login falhou! Tente novamente")

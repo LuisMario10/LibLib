@@ -1,0 +1,87 @@
+Cliente:
+
+Nome: Luisin
+Email: luisidograu@email.com
+Numero de Telefone: 967456632
+Data de Aniversario: None
+
+Cliente:
+
+Nome: Mokey D. Luffy
+Email: goingmarryeterno@email.com
+Numero de Telefone: 98786277
+Data de Aniversario: Sem emprestimos
+
+Cliente:
+
+Nome: Mickey Mouse
+Email: disney@email.com
+Numero de Telefone: 99782378
+Data de Aniversario: Sem emprestimos
+
+Cliente:
+
+Nome: Chiquinho Gavião
+Email: luneytoons@email.com
+Numero de Telefone: 979592892
+Data de Aniversario: Sem emprestimos
+
+Cliente:
+
+Nome: Neymar
+Email: ousadiaealegria@email.com
+Numero de Telefone: 982294922
+Data de Aniversario: Sem emprestimos
+
+Cliente:
+
+Nome: peixe quente
+Email: pxf12@email.com
+Numero de Telefone: 982735934
+Data de Aniversario: Sem emprestimos
+
+--------------------------------------------------
+
+Livro:
+
+Titulo: Harry Potter: A pedra filosofal
+Autor: J. K. Roling
+Genero: Fantasia
+Classificação Indicativa: 10
+Numero de Paginas: 562
+
+Livro:
+
+Titulo: Harry Potter: Prisioneiro de Askaban
+Autor: J. K. Rolling
+Genero: Fantasia
+Classificação Indicativa: 10
+Numero de Paginas: 749
+
+Livro:
+
+Titulo: Percy Jackson: O ladrão de raios
+Autor: Richard Russelj jr.
+Genero: Aventura
+Classificação Indicativa: 12
+Numero de Paginas: 1234
+
+Livro:
+
+Titulo: DragoNêmesis
+Autor: Luis Mario
+Genero: Aventura
+Classificação Indicativa: 12
+Numero de Paginas: 1340
+
+--------------------------------------------------
+
+Emprestimo:
+
+Titulo do Livro: Harry Potter: A pedra filosofal
+Nome do Cliente: Chiquinho Gavião
+Data de Emprestimo: 2025-01-21 21:12:10
+Data de Retorno: Indefinido
+
+--------------------------------------------------
+
