@@ -8,7 +8,7 @@ from tkinter import messagebox
 class Report:
     def generate_report(self):
         try:
-            _dir_report = f"src/reports/report-{date.now().second}-{date.now().minute}-{date.now().hour}-{date.now().day}-{date.now().month}-{date.now().year}.txt"
+            _dir_report = f"reports/report-{date.now().second}-{date.now().minute}-{date.now().hour}-{date.now().day}-{date.now().month}-{date.now().year}.txt"
 
             with open(_dir_report, "x") as file:
                 for clients in ClientRepository().findAll():
@@ -42,6 +42,4 @@ class Report:
         except FileExistsError as e:
             messagebox.showerror("Erro!", "Erro ao tentar manipular arquivos!")
             
-            
-Report().generate_report()
     

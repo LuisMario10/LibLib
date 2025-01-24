@@ -1,8 +1,5 @@
 import sqlite3
 
-# username: admin@liblib.auth
-# senha: fpAss10$a
-
 class AuthService:
     def __init__(self):
         self.database = sqlite3.connect('src/database/liblib.db')
